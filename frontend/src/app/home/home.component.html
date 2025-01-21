@@ -1,0 +1,66 @@
+<div *ngIf="courses && courses.length; else noCourses">
+  <div *ngFor="let course of courses" class="course-card">
+    <div>
+      <label for="subject">Subject:</label>
+      <input type="text" [(ngModel)]="course.subject" id="subject" />
+    </div>
+    
+    <div>
+      <label for="board">Board:</label>
+      <input type="text" [(ngModel)]="course.board" id="board" />
+    </div>
+    
+    <div>
+      <label for="class">Class:</label>
+      <input type="text" [(ngModel)]="course.class" id="class" />
+    </div>
+    
+    <div>
+      <label for="created_by">Created By:</label>
+      <input type="text" [(ngModel)]="course.created_by" id="created_by" />
+    </div>
+    
+    <div>
+      <label for="location">Location:</label>
+      <input type="text" [(ngModel)]="course.latitude" id="latitude" placeholder="Latitude" />
+      <input type="text" [(ngModel)]="course.longitude" id="longitude" placeholder="Longitude" />
+    </div>
+
+    <button (click)="updateCourse(course)">Update</button>
+    <button (click)="deleteCourse(course.id)">Delete</button>
+  </div>
+</div>
+
+<ng-template #noCourses>
+  <p>No courses available.</p>
+</ng-template>
+
+
+<!-- Form to create a new course -->
+<div class="create-course">
+  <h3>Create New Course</h3>
+  <label for="class">Class:</label>
+  <input type="text" [(ngModel)]="course.class" id="class" placeholder="Class" required />
+  
+  <label for="subject">Subject:</label>
+  <input type="text" [(ngModel)]="course.subject" id="subject" placeholder="Subject" required />
+  
+  <label for="board">Board:</label>
+  <input type="text" [(ngModel)]="course.board" id="board" placeholder="Board" required />
+  
+  <label for="latitude">Latitude:</label>
+  <input type="number" [(ngModel)]="course.latitude" id="latitude" placeholder="Latitude" required />
+  
+  <label for="longitude">Longitude:</label>
+  <input type="number" [(ngModel)]="course.longitude" id="longitude" placeholder="Longitude" required />
+  
+  <button (click)="createCourse()">Create Course</button>
+</div>
+
+
+<!-- Upload image section -->
+<div class="upload-image">
+  <h3>Upload Profile Image</h3>
+  <input type="file" (change)="onFileChange($event)" />
+  <button (click)="uploadImage()">Upload Image</button>
+</div>

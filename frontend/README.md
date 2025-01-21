@@ -1,108 +1,129 @@
-# Angular 13 Login and Registration with JWT and Web API example
+# Angular Ecommerce Web App
 
-Build Angular 13 Token based Authentication & Authorization Application with Web Api and JWT (including HttpInterceptor, Router & Form Validation).
-- JWT Authentication Flow for User Registration (Signup) & User Login
-- Project Structure with HttpInterceptor, Router
-- How to implement HttpInterceptor
-- Creating Login, Signup Components with Form Validation
-- Angular Components for accessing protected Resources
-- How to add a dynamic Navigation Bar to Angular App
-- Working with Browser Session Storage
+I done these App  using Angular and MySQL. 
 
-## Flow for User Registration and User Login
-For JWT – Token based Authentication with Web API, we’re gonna call 2 endpoints:
-- POST `api/auth/signup` for User Registration
-- POST `api/auth/signin` for User Login
+<br/>
 
-You can take a look at following flow to have an overview of Requests and Responses that Angular 13 JWT Authentication & Authorization Client will make or receive.
+![](1.gif)
+![](2.gif)
 
-![angular-13-login-registration-flow](angular-13-login-registration-flow.png)
 
-## Angular JWT App Diagram with Router and HttpInterceptor
-![angular-13-login-registration-overview](angular-13-login-registration-overview.png)
 
-For more detail, please visit the tutorial:
-> [Angular Login and Registration with JWT and Web API example](https://bezkoder.com/angular-13-jwt-auth/)
+## Getting Started
 
-## With Spring Boot back-end
 
-> [Angular + Spring Boot: JWT Authentication and Authorization example](https://bezkoder.com/angular-13-spring-boot-jwt-auth/)
 
-## With Node.js Express back-end
-
-> [Angular + Node.js Express: JWT Authentication and Authorization example](https://bezkoder.com/node-js-angular-13-jwt-auth/)
-
-Depending on the backend you choose, you need to open `app/_helpers/auth.interceptor.js`, modify the code like this:
-```js
-...
-
-// const TOKEN_HEADER_KEY = 'Authorization'; // for Spring Boot back-end
-const TOKEN_HEADER_KEY = 'x-access-token';   // for Node.js Express back-end
-
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  ...
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    ...
-    if (token != null) {
-      // for Spring Boot back-end
-      // authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
-
-      // for Node.js Express back-end
-      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, token) });
-    }
-    return next.handle(authReq);
-  }
-}
-
-...
+```
+git clone  folder-name
 ```
 
-Run `ng serve --port 8081` for a dev server. Navigate to `http://localhost:8081/`.
+First use npm install for both frontend and backend
 
-## More practice
-> [Angular JWT Refresh Token example with Http Interceptor](https://www.bezkoder.com/angular-12-refresh-token/)
+Then cd into both directories and run npm Start 
 
-> [Angular CRUD Application example with Web API](https://www.bezkoder.com/angular-13-crud-example/)
 
-> [Angular Pagination example | ngx-pagination](https://www.bezkoder.com/angular-13-pagination-ngx/)
 
-> [Angular File upload example with Progress bar](https://www.bezkoder.com/angular-13-file-upload/)
+```
 
-Fullstack with Node:
+cd backend
+npm  install
 
-> [Angular + Node Express + MySQL example](https://www.bezkoder.com/angular-13-node-js-express-mysql/)
+check (package.json ) is in 
 
-> [Angular + Node Express + PostgreSQL example](https://www.bezkoder.com/angular-13-node-js-express-postgresql/)
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+},
 
-> [Angular + Node Express + MongoDB example](https://www.bezkoder.com/mean-stack-crud-example-angular-13/)
+if(not exit means use these to start )
 
-> [Angular + Node Express: File upload example](https://www.bezkoder.com/angular-13-node-express-file-upload/)
+npm Start
 
-Fullstack with Spring Boot:
+cd frontend
+npm  install
+npm Start
+```
 
-> [Angular + Spring Boot + H2 Embedded Database example](https://www.bezkoder.com/spring-boot-angular-13-crud/)
+<br/>
 
-> [Angular + Spring Boot + MySQL example](https://www.bezkoder.com/spring-boot-angular-13-mysql/)
+After the entire installation you need to see the project run on http://localhost:4200/
 
-> [Angular + Spring Boot + PostgreSQL example](https://www.bezkoder.com/spring-boot-angular-13-postgresql/)
 
-> [Angular + Spring Boot + MongoDB example](https://www.bezkoder.com/angular-13-spring-boot-mongodb/)
+** MySQL setup**
 
-> [Angular + Spring Boot: File upload example](https://www.bezkoder.com/angular-13-spring-boot-file-upload/)
+```
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'user_management',
+```
 
-Fullstack with Django:
-> [Angular + Django example](https://bezkoder.com/django-angular-13-crud-rest-framework/)
 
-Serverless with Firebase:
-> [Angular Firebase CRUD with Realtime DataBase | AngularFireDatabase](https://www.bezkoder.com/angular-13-firebase-crud/)
+sql_query
 
-> [Angular Firestore CRUD example with AngularFireStore](https://www.bezkoder.com/angular-13-firestore-crud-angularfirestore/)
 
-> [Angular Firebase Storage: File Upload/Display/Delete example](https://www.bezkoder.com/angular-13-firebase-storage/)
 
-Integration (run back-end & front-end on same server/port)
-> [How to integrate Angular with Node Restful Services](https://bezkoder.com/integrate-angular-12-node-js/)
+-- --------------------------------------------------------
+-- Host:                         localhost
+-- Server version:               10.4.32-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.8.0.6908
+-- --------------------------------------------------------
 
-> [How to Integrate Angular with Spring Boot Rest API](https://bezkoder.com/integrate-angular-12-spring-boot/)
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Dumping database structure for user_management
+CREATE DATABASE IF NOT EXISTS `user_management` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `user_management`;
+
+-- Dumping structure for table user_management.courses
+CREATE TABLE IF NOT EXISTS `courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class` varchar(50) DEFAULT NULL,
+  `subject` varchar(50) DEFAULT NULL,
+  `board` varchar(50) DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `created_by` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table user_management.courses: ~3 rows (approximately)
+INSERT INTO `courses` (`id`, `class`, `subject`, `board`, `latitude`, `longitude`, `created_by`) VALUES
+	(1, 'd', 'wd', 'sd', 1, 2, '2025-01-10 12:29:49'),
+	(2, '12 th', 'Maths', 'state board', 3, 3, '2025-01-10 12:29:53'),
+	(7, 'sd', 'surya', 'asd', 2, 2, '2025-01-21 16:24:38');
+
+-- Dumping structure for table user_management.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `profile_image` varchar(255) DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table user_management.users: ~3 rows (approximately)
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `profile_image`, `latitude`, `longitude`, `token`) VALUES
+	(17, 'LinkTask', 'senthamilansurya@gmail.com', '$2b$10$JVG95K2NgqGh98xqySQcbeFBpl4.PAmVrR0d/YrRfWvdpS6/5frpu', NULL, 0, 0, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3Mzc0MzUyOTQsImV4cCI6MTczNzQzODg5NH0.xfcGfzF1BzgOFH7niMchEVUtX5Wrhp_VAqJCr4_LkVk'),
+	(18, 'LinkTask', 'senthamilansurya@gmail.com', '$2b$10$jR0FHNc3ZxxHfXVtWJV.keanooBkoOng/WOBVlZgwU0uqv2L9SyoC', NULL, 1, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNlbnRoYW1pbGFuc3VyeWFAZ21haWwuY29tIiwiaWF0IjoxNzM3NDM3MjE4LCJleHAiOjE3Mzc0NDA4MTh9.fhUVsSYo2vL9i5Vs2RtswU7nXwfSHFBJGc9YE5fIL6w'),
+	(19, 'LinkTasksadsc', 'senthamilansurya@gmail.com', '$2b$10$Ld9EkZacSIsUz79mHjMFkONuZnzKm96r8RUBFuWfT26pBzHlIdo0i', 'footer_image.png', 2, 2, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE5LCJpYXQiOjE3Mzc0NTU3MTcsImV4cCI6MTczNzQ1OTMxN30.jlrv3-HmXQH1v3h-XeO0qHwNo4wqLeA5Yyu6gK30lu0');
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+
